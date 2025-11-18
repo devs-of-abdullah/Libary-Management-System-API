@@ -1,4 +1,6 @@
-﻿namespace Entity
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entity
 {
     public class Loan
     {
@@ -12,6 +14,7 @@
 
         public ICollection<Fine> Fines { get; set; } = new List<Fine>();
         public Book? Book { get; set; }
+        
         public User? User { get; set; }
 
         public bool IsOverdue => ReturnDate == null && DateTime.UtcNow > DueDate;

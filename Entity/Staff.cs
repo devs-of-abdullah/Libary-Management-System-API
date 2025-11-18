@@ -10,12 +10,12 @@ namespace Entity
         public string? LastName { get; set; }
 
         [Required] 
-        public string? Username { get; set; } 
+        public string? Username { get; set; }
 
         [Required]
-        public string? HashedPassword { get; set; }
+        public string HashedPassword { get; set; } = "";
 
-        public string? Role { get; set; } 
+        public string Role { get; set; } = "admin"; //admin, manager
 
         public DateTime HireDate { get; set; }
 

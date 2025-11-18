@@ -1,3 +1,4 @@
+using Business.Auth;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -42,7 +43,8 @@ if (string.IsNullOrEmpty(jwtKey) || string.IsNullOrEmpty(jwtIssuer))
     throw new InvalidOperationException("JWT configuration is missing.");
 
 
-
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddSingleton<JwtService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -1,5 +1,4 @@
 ﻿using Data.Interfaces;
-using Entity;
 
 namespace DataAccess
 {
