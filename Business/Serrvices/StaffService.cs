@@ -14,7 +14,7 @@ public class StaffService : IStaffService
         _jwt = jwt;
     }
 
-    public async Task<bool> RegisterStaffAsync(string? FirstName, string? LastName, string Username, string Password, string Role)
+    public async Task<bool> RegisterStaffAsync(string? FirstName, string? LastName, string Username, string Password, string? Role)
     {
         if (await _context.Staff.AnyAsync(s => s.Username == Username))
             return false;
@@ -25,7 +25,7 @@ public class StaffService : IStaffService
             LastName = LastName,
             Username = Username,
             HashedPassword = PasswordHelper.HashPassword(Password),
-            Role = Role,
+            Role = Role ?? string.Empty,
             HireDate = DateTime.UtcNow,
             IsActive = true
         };
@@ -45,7 +45,7 @@ public class StaffService : IStaffService
         if (!PasswordHelper.VerifyPassword(password, staff.HashedPassword))
             return null;
 
-        
+
         return _jwt.GenerateToken(staff.Id, staff.Role);
     }
 }
